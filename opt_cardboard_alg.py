@@ -60,25 +60,6 @@ class Solution:
         print(f"Total Waste: {self.total_waste} mm²")
         print(f"Total Rows Used: {self.total_rows}")
 
-    # Method to display the solution as a DataFrame with rectangle details
-    def print_table(self):
-        data = []
-
-        # Populate data with rectangle placement details
-        for placement in self.rectangle_placements:
-            rect_id, container_num, row_num, rotated, width, height, area = placement
-            data.append([rect_id, container_num, row_num, rotated, width, height, area])
-
-        # Create DataFrame, order by specified columns, and exclude area from display
-        df = pd.DataFrame(data, columns=['Rectangle ID', 'Container', 'Row', 'Rotated', 'Width', 'Height', 'Area'])
-        df = df.sort_values(by=['Container', 'Row', 'Height'], ascending=[True, True, False])
-        df = df.drop(columns=['Area'])
-
-        # Display DataFrame with solution information and total waste
-        print(df)
-        print(f"Total Waste: {self.total_waste} mm²")
-        print(f"Total Rows Used: {self.total_rows}")
-
     # Method to visualize the solution as a diagram with actual used container dimensions
     def show_diagram(self, title="Packing Solution Diagram"):
         num_containers = max([placement[1] for placement in self.rectangle_placements]) + 1
